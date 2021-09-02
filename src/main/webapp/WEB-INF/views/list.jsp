@@ -18,5 +18,6 @@
                 </ul>
             </c:forEach>
         </ul>
+        <a href="/post/new">Добавить пост</a>
     </body>
 </html>

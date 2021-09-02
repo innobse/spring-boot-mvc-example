@@ -25,6 +25,7 @@ import static ru.bse71.learnup.spring.boot.mvc.util.PostUtils.generateText;
 public class InMemoryPostRepository implements PostRepository {
 
     private final Map<Integer, Post> posts = new HashMap<>();
+    private static final Random RAND = new Random();
 
     @PostConstruct
     public void init() {
@@ -62,5 +63,16 @@ public class InMemoryPostRepository implements PostRepository {
     @Override
     public Post getOne(int id) {
         return posts.get(id);
+    }
+
+    @Override
+    public boolean save(Post post) {
+        posts.put(post.getId(), post);
+        return true;
+    }
+
+    @Override
+    public int getNewId() {
+        return RAND.nextInt();
     }
 }

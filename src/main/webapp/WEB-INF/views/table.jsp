@@ -24,5 +24,6 @@
                 </tr>
             </c:forEach>
         </table>
+        <a href="/post/new">Добавить пост</a>
     </body>
 </html>

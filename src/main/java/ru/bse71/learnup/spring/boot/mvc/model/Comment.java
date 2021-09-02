@@ -1,6 +1,8 @@
 package ru.bse71.learnup.spring.boot.mvc.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Created by bse71
@@ -9,7 +11,9 @@ import lombok.Data;
  */
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Comment {
 
-    private final String text;
+    private String text;
 }

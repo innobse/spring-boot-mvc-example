@@ -1,6 +1,8 @@
 package ru.bse71.learnup.spring.boot.mvc.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -11,10 +13,12 @@ import java.util.List;
  */
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Post {
 
-    private final int id;
-    private final String title;
-    private final String text;
-    private final List<Comment> comments;
+    private int id;
+    private String title;
+    private String text;
+    private List<Comment> comments;
 }

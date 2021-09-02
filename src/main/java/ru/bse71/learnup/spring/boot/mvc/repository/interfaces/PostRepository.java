@@ -14,5 +14,10 @@ import java.util.List;
 public interface PostRepository {
 
     Collection<Post> getAllPosts();
+
     Post getOne(int id);
+
+    boolean save(Post post);
+
+    int getNewId();
 }

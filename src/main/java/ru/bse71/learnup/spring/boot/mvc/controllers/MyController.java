@@ -4,10 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import ru.bse71.learnup.spring.boot.mvc.model.Post;
 import ru.bse71.learnup.spring.boot.mvc.services.PostService;
 
 /**
@@ -36,5 +34,16 @@ public class MyController {
     public String getPost(@PathVariable("id") int id, Model model) {
         model.addAttribute("post", service.get(id));
         return "post";
+    }
+
+    @RequestMapping(value = "/post/new", method = RequestMethod.GET)
+    public String printForm() {
+        return "add-post";
+    }
+
+    @RequestMapping(value = "/post", method = RequestMethod.POST)
+    public String addPost(@ModelAttribute Post post, Model model) {
+        service.add(post);
+        return getAllPostsWithView(null, model);
     }
 }

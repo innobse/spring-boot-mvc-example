@@ -31,4 +31,9 @@ public class PostService {
     public Post get(int id) {
         return repository.getOne(id);
     }
+
+    public boolean add(Post post) {
+        post.setId(repository.getNewId());
+        return repository.save(post);
+    }
 }
