@@ -1,6 +1,5 @@
 package ru.bse71.learnup.spring.boot.mvc.repository;
 
-import javafx.geometry.Pos;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import ru.bse71.learnup.spring.boot.mvc.model.Comment;

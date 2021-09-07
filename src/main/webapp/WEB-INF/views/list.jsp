@@ -19,5 +19,7 @@
             </c:forEach>
         </ul>
         <a href="/post/new">Добавить пост</a>
+        <br />
+        <a href="/logout" >ВЫХОД</a>
     </body>
 </html>

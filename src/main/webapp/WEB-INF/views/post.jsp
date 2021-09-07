@@ -16,5 +16,7 @@
         </ul>
 
         <a href="/post" ><<< Назад</a>
+        <br />
+        <a href="/logout" >ВЫХОД</a>
     </body>
 </html>
