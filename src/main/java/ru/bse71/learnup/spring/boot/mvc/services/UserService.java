@@ -1,9 +1,11 @@
 package ru.bse71.learnup.spring.boot.mvc.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import ru.bse71.learnup.spring.boot.mvc.model.User;
-import ru.bse71.learnup.spring.boot.mvc.repository.interfaces.PostRepository;
 import ru.bse71.learnup.spring.boot.mvc.repository.interfaces.UserRepository;
 
 /**
@@ -13,7 +15,7 @@ import ru.bse71.learnup.spring.boot.mvc.repository.interfaces.UserRepository;
  */
 
 @Component
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private UserRepository repository;
 
@@ -22,8 +24,10 @@ public class UserService {
         this.repository = repository;
     }
 
-    public User searchByLoginAndPass(String login, String pass) {
-        final User byLogin = repository.getByLogin(login);
-        return (byLogin.getPass().equals(pass)) ? byLogin : null;
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        final User user = repository.getByLogin(username);
+        if (user == null) throw new UsernameNotFoundException("User not found");
+        return user;
     }
 }

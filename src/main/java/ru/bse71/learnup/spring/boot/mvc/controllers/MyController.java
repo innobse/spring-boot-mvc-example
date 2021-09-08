@@ -2,10 +2,13 @@ package ru.bse71.learnup.spring.boot.mvc.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import ru.bse71.learnup.spring.boot.mvc.model.Post;
 import ru.bse71.learnup.spring.boot.mvc.services.PostService;
 
@@ -27,6 +30,11 @@ public class MyController {
 
     @RequestMapping(value = "/post", method = RequestMethod.GET)
     public String getAllPostsWithView(@RequestParam("view") @Nullable String view, Model model) {
+        SecurityContext context = SecurityContextHolder.getContext();
+        Authentication authentication = context.getAuthentication();
+        UserDetails principal = (UserDetails) authentication.getPrincipal();
+        System.out.println(principal.getUsername());
+
         model.addAttribute("postList", service.getAllPosts());
         return view == null ? "list" : view;
     }
